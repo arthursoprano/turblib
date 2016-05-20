@@ -37,6 +37,8 @@ int __turblib_errno = 0;
 int __turblib_exit_on_error = 1;
 int __turblib_prefetching = 0;
 
+void bzero(char const* p_turblib_err, int p_TURB_ERROR_LENGTH){}
+
 #ifdef CUTOUT_SUPPORT
 
 //Linked list of all added cutout files
@@ -105,7 +107,6 @@ void turblibHandleError() {
     exit(1);
   }
 }
-
 
 /* Return the enum relating to the Fortran constant */
 enum turb1__SpatialInterpolation SpatialIntToEnum(enum SpatialInterpolation spatial)

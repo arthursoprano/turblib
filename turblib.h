@@ -14,6 +14,10 @@
 
 
 /* $Id: turblib.h,v 1.18 2009-12-06 16:01:01 eric Exp $ */
+
+// This is needed for Windows
+#define DLLEXPORT __declspec(dllexport)
+
 #ifndef TURBLIB_H_
 #define TURBLIB_H_
 
@@ -169,320 +173,320 @@ typedef struct
 #endif//CUTOUT_SUPPORT
 
 /* C */
-void soapinit (void);
-void soapdestroy (void);
+DLLEXPORT void soapinit (void);
+DLLEXPORT void soapdestroy (void);
 
 /* Fortran */
-void soapinit_ (void);
-void soapdestroy_ (void);
+DLLEXPORT void soapinit_ (void);
+DLLEXPORT void soapdestroy_ (void);
 
 /* C */
-char *turblibGetErrorString (void);
-int turblibGetErrorNumber (void);
-void turblibPrintError (void);
-void turblibSetExitOnError (int);
+DLLEXPORT char *turblibGetErrorString (void);
+DLLEXPORT int turblibGetErrorNumber (void);
+DLLEXPORT void turblibPrintError (void);
+DLLEXPORT void turblibSetExitOnError (int);
 
 /* Fortran */
-void turblibgeterrorstring_ (char *dest, int len);
-int turblibgeterrornumber_(void);
-void turblibprinterror_(void);
-void turblibsetexitonerror_(int *);
+DLLEXPORT void turblibgeterrorstring_ (char *dest, int len);
+DLLEXPORT int turblibgeterrornumber_(void);
+DLLEXPORT void turblibprinterror_(void);
+DLLEXPORT void turblibsetexitonerror_(int *);
 
 /* C */
-int getVelocitySoap (char *authToken,
+DLLEXPORT int getVelocitySoap (char *authToken,
   char *dataset, float time,
   enum SpatialInterpolation spatial, enum TemporalInterpolation temporal,
   int count, float datain[][3], float dataout[][3]);
 
 /* Fortran */
-int getvelocity_ (char *authToken,
+DLLEXPORT int getvelocity_ (char *authToken,
                   char *dataset, float *time,
                   int *spatial, int *temporal,
                   int *count, float datain[][3], float dataout[][3],
                   int len_a, int len_d);
 
 /* C */
-int getThreshold (char *authToken,
+DLLEXPORT int getThreshold (char *authToken,
 		  char *dataset, char *field, float time, float threshold,
 		  enum SpatialInterpolation spatial,
 		  int X, int Y, int Z, int Xwidth, int Ywidth, int Zwidth,
 		  ThresholdInfo **dataout, int *result_size);
 
 /* Fortran */
-int getthreshold_ (char *authToken,
+DLLEXPORT int getthreshold_ (char *authToken,
 		  char *dataset, char *field, float *time, float *threshold, 
 		  int *spatial,
 		  int *X, int *Y, int *Z, int *Xwidth, int *Ywidth, int *Zwidth,
 		  ThresholdInfo **dataout, int *result_size);
 
-void deallocate_array_ (ThresholdInfo **threshold_array);
+DLLEXPORT void deallocate_array_ (ThresholdInfo **threshold_array);
 
 /* C */
-int getBoxFilter (char *authToken,
+DLLEXPORT int getBoxFilter (char *authToken,
                   char *dataset, char *field, float time, float filterwidth,
                   int count, float datain[][3], float dataout[][3]);
 
 /* Fortran */
-int getboxfilter_ (char *authToken,
+DLLEXPORT int getboxfilter_ (char *authToken,
                    char *dataset, char *field, float *time, float *filterwidth,
                    int *count, float datain[][3], float dataout[][3],
                    int len_a, int len_d);
 
 /* C */
-int getBoxFilterSGS (char *authToken,
+DLLEXPORT int getBoxFilterSGS (char *authToken,
                   char *dataset, char *field, float time, float filterwidth,
                   int count, float datain[][3], float dataout[][6]);
 
 /* Fortran */
-int getboxfiltersgs_ (char *authToken,
+DLLEXPORT int getboxfiltersgs_ (char *authToken,
                    char *dataset, char *field, float *time, float *filterwidth,
                    int *count, float datain[][3], float dataout[][6],
                    int len_a, int len_d);
 
 /* C */
-int getBoxFilterSGSscalar (char *authToken,
+DLLEXPORT int getBoxFilterSGSscalar (char *authToken,
                   char *dataset, char *field, float time, float filterwidth,
                   int count, float datain[][3], float dataout[]);
 
 /* Fortran */
-int getboxfiltersgsscalar_ (char *authToken,
+DLLEXPORT int getboxfiltersgsscalar_ (char *authToken,
                    char *dataset, char *field, float *time, float *filterwidth,
                    int *count, float datain[][3], float dataout[],
                    int len_a, int len_d);
 
 /* C */
-int getBoxFilterSGSvector (char *authToken,
+DLLEXPORT int getBoxFilterSGSvector (char *authToken,
                   char *dataset, char *field, float time, float filterwidth,
                   int count, float datain[][3], float dataout[][3]);
 
 /* Fortran */
-int getboxfiltersgsvector_ (char *authToken,
+DLLEXPORT int getboxfiltersgsvector_ (char *authToken,
                    char *dataset, char *field, float *time, float *filterwidth,
                    int *count, float datain[][3], float dataout[][3],
                    int len_a, int len_d);
 
 /* C */
-int getBoxFilterSGSsymtensor (char *authToken,
+DLLEXPORT int getBoxFilterSGSsymtensor (char *authToken,
                   char *dataset, char *field, float time, float filterwidth,
                   int count, float datain[][3], float dataout[][6]);
 
 /* Fortran */
-int getboxfiltersgssymtensor_ (char *authToken,
+DLLEXPORT int getboxfiltersgssymtensor_ (char *authToken,
                    char *dataset, char *field, float *time, float *filterwidth,
                    int *count, float datain[][3], float dataout[][6],
                    int len_a, int len_d);
 
 /* C */
-int getBoxFilterSGStensor (char *authToken,
+DLLEXPORT int getBoxFilterSGStensor (char *authToken,
                   char *dataset, char *field, float time, float filterwidth,
                   int count, float datain[][3], float dataout[][9]);
 
 /* Fortran */
-int getboxfiltersgstensor_ (char *authToken,
+DLLEXPORT int getboxfiltersgstensor_ (char *authToken,
                    char *dataset, char *field, float *time, float *filterwidth,
                    int *count, float datain[][3], float dataout[][9],
                    int len_a, int len_d);
 
 /* C */
-int getBoxFilterGradient(char *authToken,
+DLLEXPORT int getBoxFilterGradient(char *authToken,
 			 char *dataset, char *field, float time,
 			 float filterwidth, float spacing,
 			 int count, float datain[][3], float dataout[][9]);
 
 /* Fortran */
-int getboxfiltergradient_(char *authToken,
+DLLEXPORT int getboxfiltergradient_(char *authToken,
 			  char *dataset, char*field, float *time,
 			  float *filterwidth, float* spacing,
 			  int *count, float datain[][3], float dataout[][9],
 			  int len_a, int len_d);
 
 /* C */
-int getVelocityAndPressureSoap (char *authToken,
+DLLEXPORT int getVelocityAndPressureSoap (char *authToken,
   char *dataset, float time,
   enum SpatialInterpolation spatial, enum TemporalInterpolation temporal,
   int count, float datain[][3], float dataout[][4]);
 
 /* Fortran */
-int getvelocityandpressure_ (char *authToken,
+DLLEXPORT int getvelocityandpressure_ (char *authToken,
   char *dataset, float *time,
   int *spatial, int *temporal,
   int *count, float datain[][3], float dataout[][4],
   int len_a, int len_d);
 
 /* C */
-int getPressureHessianSoap(char *authToken,
+DLLEXPORT int getPressureHessianSoap(char *authToken,
       char *dataset, float time,
       enum SpatialInterpolation spatial, enum TemporalInterpolation temporal,
       int count, float datain[][3], float dataout[][6]);
 
 /* Fortran */
-int getpressurehessian_(char *authToken,
+DLLEXPORT int getpressurehessian_(char *authToken,
       char *dataset, float *time,
       int *spatial, int *temporal,
       int *count, float datain[][3], float dataout[][6],
       int len_a, int len_d);
 
 /* C */
-int getVelocityGradientSoap(char *authToken,
+DLLEXPORT int getVelocityGradientSoap(char *authToken,
       char *dataset, float time,
       enum SpatialInterpolation spatial, enum TemporalInterpolation temporal,
       int count, float datain[][3], float dataout[][9]);
 
 /* Fortran */
-int getvelocitygradient_(char *authToken,
+DLLEXPORT int getvelocitygradient_(char *authToken,
       char *dataset, float *time,
       int *spatial, int *temporal,
       int *count, float datain[][3], float dataout[][9],
       int len_a, int len_d);
 
 /* C */
-int getMagneticFieldGradientSoap(char *authToken,
+DLLEXPORT int getMagneticFieldGradientSoap(char *authToken,
       char *dataset, float time,
       enum SpatialInterpolation spatial, enum TemporalInterpolation temporal,
       int count, float datain[][3], float dataout[][9]);
 
 /* Fortran */
-int getmagneticfieldgradient_(char *authToken,
+DLLEXPORT int getmagneticfieldgradient_(char *authToken,
       char *dataset, float *time,
       int *spatial, int *temporal,
       int *count, float datain[][3], float dataout[][9],
       int len_a, int len_d);
 
 /* C */
-int getVectorPotentialGradientSoap(char *authToken,
+DLLEXPORT int getVectorPotentialGradientSoap(char *authToken,
       char *dataset, float time,
       enum SpatialInterpolation spatial, enum TemporalInterpolation temporal,
       int count, float datain[][3], float dataout[][9]);
 
 /* Fortran */
-int getvectorpotentialgradient_(char *authToken,
+DLLEXPORT int getvectorpotentialgradient_(char *authToken,
       char *dataset, float *time,
       int *spatial, int *temporal,
       int *count, float datain[][3], float dataout[][9],
       int len_a, int len_d);
 
 /* C */
-int getPressureGradientSoap(char *authToken,
+DLLEXPORT int getPressureGradientSoap(char *authToken,
       char *dataset, float time,
       enum SpatialInterpolation spatial, enum TemporalInterpolation temporal,
       int count, float datain[][3], float dataout[][3]);
 
 /* Fortran */
-int getpressuregradient_(char *authToken,
+DLLEXPORT int getpressuregradient_(char *authToken,
       char *dataset, float *time,
       int *spatial, int *temporal,
       int *count, float datain[][3], float dataout[][3],
       int len_a, int len_d);
 
 /* C */
-int getVelocityHessianSoap(char *authToken,
+DLLEXPORT int getVelocityHessianSoap(char *authToken,
       char *dataset, float time,
       enum SpatialInterpolation spatial, enum TemporalInterpolation temporal,
       int count, float datain[][3], float dataout[][18]);
 
 /* Fortran */
-int getvelocityhessian_(char *authToken,
+DLLEXPORT int getvelocityhessian_(char *authToken,
       char *dataset, float *time,
       int *spatial, int *temporal,
       int *count, float datain[][3], float dataout[][18],
       int len_a, int len_d);
 
 /* C */
-int getVelocityLaplacianSoap(char *authToken,
+DLLEXPORT int getVelocityLaplacianSoap(char *authToken,
       char *dataset, float time,
       enum SpatialInterpolation spatial, enum TemporalInterpolation temporal,
       int count, float datain[][3], float dataout[][3]);
 
 /* Fortran */
-int getvelocitylaplacian_(char *authToken,
+DLLEXPORT int getvelocitylaplacian_(char *authToken,
       char *dataset, float *time,
       int *spatial, int *temporal,
       int *count, float datain[][3], float dataout[][3],
       int len_a, int len_d);
 
 /* C */
-int getMagneticFieldHessianSoap(char *authToken,
+DLLEXPORT int getMagneticFieldHessianSoap(char *authToken,
       char *dataset, float time,
       enum SpatialInterpolation spatial, enum TemporalInterpolation temporal,
       int count, float datain[][3], float dataout[][18]);
 
 /* Fortran */
-int getmagneticfieldhessian_(char *authToken,
+DLLEXPORT int getmagneticfieldhessian_(char *authToken,
       char *dataset, float *time,
       int *spatial, int *temporal,
       int *count, float datain[][3], float dataout[][18],
       int len_a, int len_d);
 
 /* C */
-int getMagneticFieldLaplacianSoap(char *authToken,
+DLLEXPORT int getMagneticFieldLaplacianSoap(char *authToken,
       char *dataset, float time,
       enum SpatialInterpolation spatial, enum TemporalInterpolation temporal,
       int count, float datain[][3], float dataout[][3]);
 
 /* Fortran */
-int getmagneticfieldlaplacian_(char *authToken,
+DLLEXPORT int getmagneticfieldlaplacian_(char *authToken,
       char *dataset, float *time,
       int *spatial, int *temporal,
       int *count, float datain[][3], float dataout[][3],
       int len_a, int len_d);
 
 /* C */
-int getVectorPotentialHessianSoap(char *authToken,
+DLLEXPORT int getVectorPotentialHessianSoap(char *authToken,
       char *dataset, float time,
       enum SpatialInterpolation spatial, enum TemporalInterpolation temporal,
       int count, float datain[][3], float dataout[][18]);
 
 /* Fortran */
-int getvectorpotentialhessian_(char *authToken,
+DLLEXPORT int getvectorpotentialhessian_(char *authToken,
       char *dataset, float *time,
       int *spatial, int *temporal,
       int *count, float datain[][3], float dataout[][18],
       int len_a, int len_d);
 
 /* C */
-int getVectorPotentialLaplacianSoap(char *authToken,
+DLLEXPORT int getVectorPotentialLaplacianSoap(char *authToken,
       char *dataset, float time,
       enum SpatialInterpolation spatial, enum TemporalInterpolation temporal,
       int count, float datain[][3], float dataout[][3]);
 
 /* Fortran */
-int getvectorpotentiallaplacian_(char *authToken,
+DLLEXPORT int getvectorpotentiallaplacian_(char *authToken,
       char *dataset, float *time,
       int *spatial, int *temporal,
       int *count, float datain[][3], float dataout[][3],
       int len_a, int len_d);
 
 /* C */
-int nullOp(char *authToken, int count,
+DLLEXPORT int nullOp(char *authToken, int count,
       float datain[][3], float dataout[][3]);
 
 /* Fortran */
-int nullop_(char *authToken, int *count,
+DLLEXPORT int nullop_(char *authToken, int *count,
       float datain[][3], float dataout[][3],
       int len_a, int len_d);
 
 /* C */
-int getForce(char *authToken,
+DLLEXPORT int getForce(char *authToken,
   char *dataset, float time,
   enum SpatialInterpolation spatial, enum TemporalInterpolation temporal,
   int count, float datain[][3], float dataout[][3]);
 
 /* Fortran */
-int getforce_(char *authToken,
+DLLEXPORT int getforce_(char *authToken,
   char *dataset, float *time,
   int *spatial, int *temporal,
   int *count, float datain[][3], float dataout[][3],
   int len_a, int len_d);
 
 /*C*/
-int getPosition(char *authToken,
+DLLEXPORT int getPosition(char *authToken,
   char *dataset, float startTime, float endTime,
   float dt,
   enum SpatialInterpolation spatial,
   int count, float datain[][3], float dataout[][3]);
 
 /* Fortran */
-int getposition_(char *authToken,
+DLLEXPORT int getposition_(char *authToken,
   char *dataset, float *startTime, float *endTime,
   float *dt,
   int *spatial,
@@ -490,133 +494,133 @@ int getposition_(char *authToken,
   int len_a, int len_d);
 
 /* C */
-int getRawVelocity (char *authToken,
+DLLEXPORT int getRawVelocity (char *authToken,
   char *dataset, float time,
   int X, int Y, int Z, int Xwidth, int Ywidth, int Zwidth, char dataout[]);
 
 /* Fortran */
-int getrawvelocity_ (char *authToken,
+DLLEXPORT int getrawvelocity_ (char *authToken,
   char *dataset, float *time,
   int *X, int *Y, int *Z, int *Xwidth, int *Ywidth, int *Zwidth,
   float dataout[]);
 
 /* C */
-int getMagneticFieldSoap (char *authToken,
+DLLEXPORT int getMagneticFieldSoap (char *authToken,
   char *dataset, float time,
   enum SpatialInterpolation spatial, enum TemporalInterpolation temporal,
   int count, float datain[][3], float dataout[][3]);
 
 /* Fortran */
-int getmagneticfield_ (char *authToken,
+DLLEXPORT int getmagneticfield_ (char *authToken,
   char *dataset, float *time,
   int *spatial, int *temporal,
   int *count, float datain[][3], float dataout[][3],
   int len_a, int len_d);
 
 /* C */
-int getRawMagneticField (char *authToken,
+DLLEXPORT int getRawMagneticField (char *authToken,
   char *dataset, float time,
   int X, int Y, int Z, int Xwidth, int Ywidth, int Zwidth, char dataout[]);
 
 /* Fortran */
-int getrawmagneticfield_ (char *authToken,
+DLLEXPORT int getrawmagneticfield_ (char *authToken,
   char *dataset, float *time,
   int *X, int *Y, int *Z, int *Xwidth, int *Ywidth, int *Zwidth,
   float dataout[]);
 
 /* C */
-int getVectorPotentialSoap (char *authToken,
+DLLEXPORT int getVectorPotentialSoap (char *authToken,
   char *dataset, float time,
   enum SpatialInterpolation spatial, enum TemporalInterpolation temporal,
   int count, float datain[][3], float dataout[][3]);
 
 /* Fortran */
-int getvectorpotential_ (char *authToken,
+DLLEXPORT int getvectorpotential_ (char *authToken,
   char *dataset, float *time,
   int *spatial, int *temporal,
   int *count, float datain[][3], float dataout[][3],
   int len_a, int len_d);
 
 /* C */
-int getRawVectorPotential (char *authToken,
+DLLEXPORT int getRawVectorPotential (char *authToken,
   char *dataset, float time,
   int X, int Y, int Z, int Xwidth, int Ywidth, int Zwidth, char dataout[]);
 
 /* Fortran */
-int getrawvectorpotential_ (char *authToken,
+DLLEXPORT int getrawvectorpotential_ (char *authToken,
   char *dataset, float *time,
   int *X, int *Y, int *Z, int *Xwidth, int *Ywidth, int *Zwidth,
   float dataout[]);
 
 /* C */
-int getPressureSoap (char *authToken,
+DLLEXPORT int getPressureSoap (char *authToken,
   char *dataset, float time,
   enum SpatialInterpolation spatial, enum TemporalInterpolation temporal,
   int count, float datain[][3], float dataout[]);
 
 /* Fortran */
-int getpressure_ (char *authToken,
+DLLEXPORT int getpressure_ (char *authToken,
   char *dataset, float *time,
   int *spatial, int *temporal,
   int *count, float datain[][3], float dataout[],
   int len_a, int len_d);
 
 /* C */
-int getRawPressure (char *authToken,
+DLLEXPORT int getRawPressure (char *authToken,
   char *dataset, float time,
   int X, int Y, int Z, int Xwidth, int Ywidth, int Zwidth, char dataout[]);
 
 /* Fortran */
-int getrawpressure_ (char *authToken,
+DLLEXPORT int getrawpressure_ (char *authToken,
   char *dataset, float *time,
   int *X, int *Y, int *Z, int *Xwidth, int *Ywidth, int *Zwidth, float dataout[]);
 
 /* C */
-int getDensitySoap (char *authToken,
+DLLEXPORT int getDensitySoap (char *authToken,
   char *dataset, float time,
   enum SpatialInterpolation spatial, enum TemporalInterpolation temporal,
   int count, float datain[][3], float dataout[]);
 
 /* Fortran */
-int getdensity_ (char *authToken,
+DLLEXPORT int getdensity_ (char *authToken,
   char *dataset, float *time,
   int *spatial, int *temporal,
   int *count, float datain[][3], float dataout[],
   int len_a, int len_d);
 
 /* C */
-int getDensityGradientSoap(char *authToken,
+DLLEXPORT int getDensityGradientSoap(char *authToken,
       char *dataset, float time,
       enum SpatialInterpolation spatial, enum TemporalInterpolation temporal,
       int count, float datain[][3], float dataout[][3]);
 
 /* Fortran */
-int getdensitygradient_(char *authToken,
+DLLEXPORT int getdensitygradient_(char *authToken,
       char *dataset, float *time,
       int *spatial, int *temporal,
       int *count, float datain[][3], float dataout[][3],
       int len_a, int len_d);
 
 /* C */
-int getDensityHessianSoap(char *authToken,
+DLLEXPORT int getDensityHessianSoap(char *authToken,
       char *dataset, float time,
       enum SpatialInterpolation spatial, enum TemporalInterpolation temporal,
       int count, float datain[][3], float dataout[][6]);
 
 /* Fortran */
-int getdensityhessian_(char *authToken,
+DLLEXPORT int getdensityhessian_(char *authToken,
       char *dataset, float *time,
       int *spatial, int *temporal,
       int *count, float datain[][3], float dataout[][6],
       int len_a, int len_d);
 
 /* C */
-int getRawDensity (char *authToken,
+DLLEXPORT int getRawDensity (char *authToken,
   char *dataset, float time,
   int X, int Y, int Z, int Xwidth, int Ywidth, int Zwidth, char dataout[]);
 
 /* Fortran */
-int getrawdensity_ (char *authToken,
+DLLEXPORT int getrawdensity_ (char *authToken,
   char *dataset, float *time,
   int *X, int *Y, int *Z, int *Xwidth, int *Ywidth, int *Zwidth, float dataout[]);
 
@@ -625,106 +629,106 @@ int getrawdensity_ (char *authToken,
 
 #ifdef CUTOUT_SUPPORT
 
-int getVelocityGradientLocal (TurbDataset dataset, float time,
+DLLEXPORT int getVelocityGradientLocal (TurbDataset dataset, float time,
 			      enum SpatialInterpolation spatial, enum TemporalInterpolation temporal,
 			      int count, float input[][3], float output[][9]);
 
-int getVelocityLaplacianLocal (TurbDataset dataset, float time,
+DLLEXPORT int getVelocityLaplacianLocal (TurbDataset dataset, float time,
 			       enum SpatialInterpolation spatial, enum TemporalInterpolation temporal,
 			       int count, float input[][3], float output[][3]);
 
-int getVelocityHessianLocal (TurbDataset dataset, float time,
+DLLEXPORT int getVelocityHessianLocal (TurbDataset dataset, float time,
 			     enum SpatialInterpolation spatial, enum TemporalInterpolation temporal,
 			     int count, float input[][3], float output[][18]);
 
-int getVelocityAndPressureLocal (TurbDataset dataset, float time,
+DLLEXPORT int getVelocityAndPressureLocal (TurbDataset dataset, float time,
 				 enum SpatialInterpolation spatial, enum TemporalInterpolation temporal,
 				 int count, float datain[][3], float dataout[][4]);
 
-int getMagneticFieldLaplacianLocal (TurbDataset dataset, float time,
+DLLEXPORT int getMagneticFieldLaplacianLocal (TurbDataset dataset, float time,
 				    enum SpatialInterpolation spatial, enum TemporalInterpolation temporal,
 				    int count, float datain[][3], float dataout[][3]);
 
-int getVectorPotentialLaplacianLocal (TurbDataset dataset, float time,
+DLLEXPORT int getVectorPotentialLaplacianLocal (TurbDataset dataset, float time,
 				      enum SpatialInterpolation spatial, enum TemporalInterpolation temporal,
 				      int count, float datain[][3], float dataout[][3]);
 
-int getPressureHessianLocal (TurbDataset dataset, float time,
+DLLEXPORT int getPressureHessianLocal (TurbDataset dataset, float time,
 			     enum SpatialInterpolation spatial, enum TemporalInterpolation temporal,
 			     int count, float datain[][3], float dataout[][6]);
 
-int getMagneticFieldHessianLocal (TurbDataset dataset, float time,
+DLLEXPORT int getMagneticFieldHessianLocal (TurbDataset dataset, float time,
 				  enum SpatialInterpolation spatial, enum TemporalInterpolation temporal,
 				  int count, float datain[][3], float dataout[][18]);
 
-int getVectorPotentialHessianLocal (TurbDataset dataset, float time,
+DLLEXPORT int getVectorPotentialHessianLocal (TurbDataset dataset, float time,
 				    enum SpatialInterpolation spatial, enum TemporalInterpolation temporal,
 				    int count, float datain[][3], float dataout[][18]);
 
-int getPressureGradientLocal (TurbDataset dataset, float time,
+DLLEXPORT int getPressureGradientLocal (TurbDataset dataset, float time,
 			      enum SpatialInterpolation spatial, enum TemporalInterpolation temporal,
 			      int count, float datain[][3], float dataout[][3]);
 
-int getMagneticFieldGradientLocal (TurbDataset dataset, float time,
+DLLEXPORT int getMagneticFieldGradientLocal (TurbDataset dataset, float time,
 				   enum SpatialInterpolation spatial, enum TemporalInterpolation temporal,
 				   int count, float datain[][3], float dataout[][9]);
 
-int getVectorPotentialGradientLocal (TurbDataset dataset, float time,
+DLLEXPORT int getVectorPotentialGradientLocal (TurbDataset dataset, float time,
 				     enum SpatialInterpolation spatial, enum TemporalInterpolation temporal,
 				     int count, float datain[][3], float dataout[][9]);
 
-int getDensityGradientLocal (TurbDataset dataset, float time,
+DLLEXPORT int getDensityGradientLocal (TurbDataset dataset, float time,
 			      enum SpatialInterpolation spatial, enum TemporalInterpolation temporal,
 			      int count, float datain[][3], float dataout[][3]);
 
-int getDensityHessianLocal (TurbDataset dataset, float time,
+DLLEXPORT int getDensityHessianLocal (TurbDataset dataset, float time,
 			     enum SpatialInterpolation spatial, enum TemporalInterpolation temporal,
 			     int count, float datain[][3], float dataout[][6]);
 
 /* Cutout functions */
 
 /* Fortran */
-int turblibaddlocalsource_ (char *filename);
-int turblibAddLocalSource(char *filename);
-dataKernel* getDataCube(TurbDataset dataset, TurbField function, int x, int y, int z, int timestep, int size);
-int validateParams(enum SpatialInterpolation spatial, TurbDataset set, int useFD);
-TurbDataset getDataSet(char *setname);
-int isDataAvailable(TurbDataset set, TurbField function, int count, float position[][3], float time,
+DLLEXPORT int turblibaddlocalsource_ (char *filename);
+DLLEXPORT int turblibAddLocalSource(char *filename);
+DLLEXPORT dataKernel* getDataCube(TurbDataset dataset, TurbField function, int x, int y, int z, int timestep, int size);
+DLLEXPORT int validateParams(enum SpatialInterpolation spatial, TurbDataset set, int useFD);
+DLLEXPORT TurbDataset getDataSet(char *setname);
+DLLEXPORT int isDataAvailable(TurbDataset set, TurbField function, int count, float position[][3], float time,
 		    enum SpatialInterpolation spatial, enum TemporalInterpolation temporal);
 cutoutFile* findDataBlock(TurbDataset dataset, TurbField function, int x, int y, int z, int xw, int yw, int zw, int timestep);
-int isWithinFile(TurbDataset dataset, TurbField function, int x, int y, int z, int xw, int yw, int zw, int timestep, cutoutFile* file);
-int isDataComplete(TurbDataset dataset, TurbField function, int x, int y, int z, int xw, int yw, int zw, int timestep);
-int turblibSetPrefetching(int);
-int loadNeededData(TurbDataset set, TurbField function, int count, float position[][3], float time,
+DLLEXPORT int isWithinFile(TurbDataset dataset, TurbField function, int x, int y, int z, int xw, int yw, int zw, int timestep, cutoutFile* file);
+DLLEXPORT int isDataComplete(TurbDataset dataset, TurbField function, int x, int y, int z, int xw, int yw, int zw, int timestep);
+DLLEXPORT int turblibSetPrefetching(int);
+DLLEXPORT int loadNeededData(TurbDataset set, TurbField function, int count, float position[][3], float time,
 		   enum SpatialInterpolation spatial, enum TemporalInterpolation temporal);
-int freeLoadedMemory(void);
-void freeDataCube(dataKernel* cube);
-int loadDataCube(TurbDataset dataset, TurbField function, int x, int y, int z, int timestep, int size, float *buff);
-int loadSubBlock(TurbDataset dataset, TurbField function, int timestep, hid_t mspace, float *buff,
+DLLEXPORT int freeLoadedMemory(void);
+DLLEXPORT void freeDataCube(dataKernel* cube);
+DLLEXPORT int loadDataCube(TurbDataset dataset, TurbField function, int x, int y, int z, int timestep, int size, float *buff);
+DLLEXPORT int loadSubBlock(TurbDataset dataset, TurbField function, int timestep, hid_t mspace, float *buff,
                  int x, int y, int z, int wx, int wy, int wz, int dest_x, int dest_y, int dest_z);
-int loadDataToMemory(cutoutFile *src, TurbField function, int timestep, int xl, int yl, int zl, int xh, int yh, int zh);
-int getValueLocal(TurbDataset dataset, TurbField func,
+DLLEXPORT int loadDataToMemory(cutoutFile *src, TurbField function, int timestep, int xl, int yl, int zl, int xh, int yh, int zh);
+DLLEXPORT int getValueLocal(TurbDataset dataset, TurbField func,
 		  enum SpatialInterpolation spatial, enum TemporalInterpolation temporal,
 		  float time, int count, float position[][3], float *result);
-int getSingleValue(TurbDataset dataset, TurbField func, float position[3], int timestep,
+DLLEXPORT int getSingleValue(TurbDataset dataset, TurbField func, float position[3], int timestep,
 		   enum SpatialInterpolation spatial, float *output);
-int getGradient (TurbDataset dataset, TurbField function, float time,
+DLLEXPORT int getGradient (TurbDataset dataset, TurbField function, float time,
 		 enum SpatialInterpolation spatial, enum TemporalInterpolation temporal,
   int count, float input[count][3], float *output);
-int getLaplacian (TurbDataset dataset, TurbField function, float time,
+DLLEXPORT int getLaplacian (TurbDataset dataset, TurbField function, float time,
 		  enum SpatialInterpolation spatial, enum TemporalInterpolation temporal,
   int count, float input[count][3], float output[count][3]);
-int getHessian (TurbDataset dataset, TurbField function, float time,
+DLLEXPORT int getHessian (TurbDataset dataset, TurbField function, float time,
 		enum SpatialInterpolation spatial, enum TemporalInterpolation temporal,
   int count, float input[count][3], float *output);
 
-int lagrangianInterp(int comps, float *kernel, float position[3], int nOrder, float dx, float result[comps]);
-int lagrangianInterp2(int comps, dataKernel *kernel, float position[3], int nOrder, float dx, float result[comps]);
-int pchipInterp(int comps, float data[4][comps], float time, int timestep, float dt, float result[comps]);
+DLLEXPORT int lagrangianInterp(int comps, float *kernel, float position[3], int nOrder, float dx, float result[comps]);
+DLLEXPORT int lagrangianInterp2(int comps, dataKernel *kernel, float position[3], int nOrder, float dx, float result[comps]);
+DLLEXPORT int pchipInterp(int comps, float data[4][comps], float time, int timestep, float dt, float result[comps]);
 
-int computeGradient(dataKernel* kernel, int comps, float dx, int size, int nOrder, float *output);
-int computeHessian(dataKernel* kernel, int comps, float dx, int size, int nOrder, float *output);
-int computeLaplacian(dataKernel* kernel, int comps, float dx, int size, int nOrder, float *output);
+DLLEXPORT int computeGradient(dataKernel* kernel, int comps, float dx, int size, int nOrder, float *output);
+DLLEXPORT int computeHessian(dataKernel* kernel, int comps, float dx, int size, int nOrder, float *output);
+DLLEXPORT int computeLaplacian(dataKernel* kernel, int comps, float dx, int size, int nOrder, float *output);
 
 #define SecFiniteDiff4(dx, x1, x2, x3, x4, x5) 4.0f / 3.0f / dx / dx * (x2 + x4 - 2.0f * x3) - 1.0f / 12.0f / dx / dx * (x1 + x5 - 2.0f * x3)
 
@@ -744,97 +748,97 @@ int computeLaplacian(dataKernel* kernel, int comps, float dx, int size, int nOrd
 }
 #endif//__cplusplus
 
-int getVelocity (char *authToken,
+DLLEXPORT int getVelocity (char *authToken,
              char *dataset, float time,
              enum SpatialInterpolation spatial, enum TemporalInterpolation temporal,
              int count, float datain[][3], float dataout[][3]);
 
-int getVelocityAndPressure (char *authToken,
+DLLEXPORT int getVelocityAndPressure (char *authToken,
 		     char *dataset, float time,
 		     enum SpatialInterpolation spatial, enum TemporalInterpolation temporal,
 		     int count, float datain[][3], float dataout[][4]);
 
-int getVelocityGradient (char *authToken,
+DLLEXPORT int getVelocityGradient (char *authToken,
 		     char *dataset, float time,
 		     enum SpatialInterpolation spatial, enum TemporalInterpolation temporal,
 		     int count, float datain[][3], float dataout[][9]);
 
-int getVelocityHessian (char *authToken,
+DLLEXPORT int getVelocityHessian (char *authToken,
 		     char *dataset, float time,
 		     enum SpatialInterpolation spatial, enum TemporalInterpolation temporal,
 		     int count, float datain[][3], float dataout[][18]);
 
-int getVelocityLaplacian (char *authToken,
+DLLEXPORT int getVelocityLaplacian (char *authToken,
 		     char *dataset, float time,
 		     enum SpatialInterpolation spatial, enum TemporalInterpolation temporal,
 		     int count, float datain[][3], float dataout[][3]);
 
-int getPressure (char *authToken,
+DLLEXPORT int getPressure (char *authToken,
 		     char *dataset, float time,
 		     enum SpatialInterpolation spatial, enum TemporalInterpolation temporal,
 		     int count, float datain[][3], float dataout[]);
 
-int getPressureGradient (char *authToken,
+DLLEXPORT int getPressureGradient (char *authToken,
 		     char *dataset, float time,
 		     enum SpatialInterpolation spatial, enum TemporalInterpolation temporal,
 		     int count, float datain[][3], float dataout[][3]);
 
-int getPressureHessian (char *authToken,
+DLLEXPORT int getPressureHessian (char *authToken,
 		     char *dataset, float time,
 		     enum SpatialInterpolation spatial, enum TemporalInterpolation temporal,
 		     int count, float datain[][3], float dataout[][6]);
 
-int getMagneticField (char *authToken,
+DLLEXPORT int getMagneticField (char *authToken,
 		     char *dataset, float time,
 		     enum SpatialInterpolation spatial, enum TemporalInterpolation temporal,
 		     int count, float datain[][3], float dataout[][3]);
 
-int getMagneticFieldGradient (char *authToken,
+DLLEXPORT int getMagneticFieldGradient (char *authToken,
 		     char *dataset, float time,
 		     enum SpatialInterpolation spatial, enum TemporalInterpolation temporal,
 		     int count, float datain[][3], float dataout[][9]);
 
-int getMagneticFieldHessian (char *authToken,
+DLLEXPORT int getMagneticFieldHessian (char *authToken,
 		     char *dataset, float time,
 		     enum SpatialInterpolation spatial, enum TemporalInterpolation temporal,
 		     int count, float datain[][3], float dataout[][18]);
 
-int getMagneticFieldLaplacian (char *authToken,
+DLLEXPORT int getMagneticFieldLaplacian (char *authToken,
 		     char *dataset, float time,
 		     enum SpatialInterpolation spatial, enum TemporalInterpolation temporal,
 		     int count, float datain[][3], float dataout[][3]);
 
-int getVectorPotential (char *authToken,
+DLLEXPORT int getVectorPotential (char *authToken,
 		     char *dataset, float time,
 		     enum SpatialInterpolation spatial, enum TemporalInterpolation temporal,
 		     int count, float datain[][3], float dataout[][3]);
 
-int getVectorPotentialGradient (char *authToken,
+DLLEXPORT int getVectorPotentialGradient (char *authToken,
 		     char *dataset, float time,
 		     enum SpatialInterpolation spatial, enum TemporalInterpolation temporal,
 		     int count, float datain[][3], float dataout[][9]);
 
-int getVectorPotentialHessian (char *authToken,
+DLLEXPORT int getVectorPotentialHessian (char *authToken,
 		     char *dataset, float time,
 		     enum SpatialInterpolation spatial, enum TemporalInterpolation temporal,
 		     int count, float datain[][3], float dataout[][18]);
 
-int getVectorPotentialLaplacian (char *authToken,
+DLLEXPORT int getVectorPotentialLaplacian (char *authToken,
 		     char *dataset, float time,
 		     enum SpatialInterpolation spatial, enum TemporalInterpolation temporal,
 		     int count, float datain[][3], float dataout[][3]);
 
-int getDensity (char *authToken,
+DLLEXPORT int getDensity (char *authToken,
 		     char *dataset, float time,
 		     enum SpatialInterpolation spatial, enum TemporalInterpolation temporal,
 		     int count, float datain[][3], float dataout[]);
 
-int getDensityGradient (char *authToken,
+DLLEXPORT int getDensityGradient (char *authToken,
 		     char *dataset, float time,
 		     enum SpatialInterpolation spatial, enum TemporalInterpolation temporal,
 		     int count, float datain[][3], float dataout[][3]);
 
-int getDensityHessian (char *authToken,
+DLLEXPORT int getDensityHessian (char *authToken,
 		     char *dataset, float time,
 		     enum SpatialInterpolation spatial, enum TemporalInterpolation temporal,
 		     int count, float datain[][3], float dataout[][6]);
